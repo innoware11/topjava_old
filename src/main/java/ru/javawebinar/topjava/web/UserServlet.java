@@ -8,10 +8,11 @@ import java.io.IOException;
 
 public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("userList.jsp").forward(request, response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        //request.getRequestDispatcher("userList.jsp").forward(request, response);
+        response.sendRedirect("userList.jsp");
     }
 }
