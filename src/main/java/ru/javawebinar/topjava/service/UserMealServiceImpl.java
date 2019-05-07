@@ -1,14 +1,26 @@
 package ru.javawebinar.topjava.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import ru.javawebinar.topjava.model.User;
+import ru.javawebinar.topjava.repository.UserMealRepository;
 import ru.javawebinar.topjava.repository.UserRepository;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
 import java.util.List;
 
 //будет бросать notfoundexception
+@Service
+@Qualifier("UserMealServiceImpl")
 public class UserMealServiceImpl implements UserService{
-    private UserRepository userRepository;
+
+    @Autowired
+    private UserMealRepository repository;
+
+    public UserMealRepository getRepository() {
+        return repository;
+    }
 
     public User save(User user) {
         return null;
