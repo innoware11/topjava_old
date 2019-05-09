@@ -2,8 +2,6 @@ package ru.javawebinar.topjava;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import ru.javawebinar.topjava.model.User;
-import ru.javawebinar.topjava.repository.mock.MockUserMealRepository;
 import ru.javawebinar.topjava.repository.mock.MockUserRepository;
 import ru.javawebinar.topjava.service.UserMealServiceImpl;
 

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public class MockUserMealRepository implements UserMealRepository {
+public class MockUserMealRepositoryImpl implements UserMealRepository {
     private static final LoggerWrapper LOG = LoggerWrapper.get(UserServlet.class);
 
     @Override
