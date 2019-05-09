@@ -14,15 +14,15 @@ public class MockUserMealRepositoryImpl implements UserMealRepository {
     private static final LoggerWrapper LOG = LoggerWrapper.get(UserServlet.class);
 
     @Override
-    public boolean delete(int id, int userId) {
-        LOG.info("Delete meal " + id + " from user " + userId);
-        return true;
-    }
-
-    @Override
     public UserMeal save(UserMeal userMeal, int userId) {
         LOG.info("Save meal " + userMeal + " from user " + userId);
         return userMeal;
+    }
+
+    @Override
+    public boolean delete(int id, int userId) {
+        LOG.info("Delete meal " + id + " from user " + userId);
+        return true;
     }
 
     @Override
