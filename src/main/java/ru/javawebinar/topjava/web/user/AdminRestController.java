@@ -10,7 +10,7 @@ import ru.javawebinar.topjava.web.UserServlet;
 import java.util.List;
 
 @Controller
-public class AdminUserRestController {
+public class AdminRestController {
     private static final LoggerWrapper LOG = LoggerWrapper.get(UserServlet.class);
 
     @Autowired

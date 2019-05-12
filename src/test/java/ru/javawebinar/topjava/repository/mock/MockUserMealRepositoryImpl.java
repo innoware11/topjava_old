@@ -4,25 +4,36 @@ import org.springframework.stereotype.Repository;
 import ru.javawebinar.topjava.LoggerWrapper;
 import ru.javawebinar.topjava.model.UserMeal;
 import ru.javawebinar.topjava.repository.UserMealRepository;
-import ru.javawebinar.topjava.web.UserServlet;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
 public class MockUserMealRepositoryImpl implements UserMealRepository {
-    private static final LoggerWrapper LOG = LoggerWrapper.get(UserServlet.class);
+    private static final LoggerWrapper LOG = LoggerWrapper.get(MockUserMealRepositoryImpl.class);
 
-    @Override
-    public UserMeal save(UserMeal userMeal, int userId) {
-        LOG.info("Save meal " + userMeal + " from user " + userId);
-        return userMeal;
+    @PostConstruct
+    public void postConstruct() {
+        LOG.info("PostConstruct");
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        LOG.info("PreDestroy");
     }
 
     @Override
     public boolean delete(int id, int userId) {
         LOG.info("Delete meal " + id + " from user " + userId);
         return true;
+    }
+
+    @Override
+    public UserMeal save(UserMeal userMeal, int userId) {
+        LOG.info("Save meal " + userMeal + " from user " + userId);
+        return userMeal;
     }
 
     @Override

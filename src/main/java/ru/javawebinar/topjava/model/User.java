@@ -1,6 +1,5 @@
 package ru.javawebinar.topjava.model;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.Set;
@@ -16,18 +15,29 @@ public class User extends NamedEntity {
 
     private Date registered = new Date();
 
-    private Set<Role> authorities;
+    private Set<Role> roles;
 
     public User() {
     }
 
-    public User(String name, String email, String password, Role role, Role... roles) {
-        super(name);
+    public User(User u) {
+        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRoles());
+    }
+
+    public User(Integer id, String name, String email, String password, boolean enabled, Role role, Role... roles) {
+        this(id, name, email, password, enabled, EnumSet.of(role, roles));
+    }
+
+    public User(Integer id, String name, String email, String password, boolean enabled, Set<Role> roles) {
+        super(id, name);
         this.email = email;
         this.password = password;
-        this.enabled = true;
-        this.authorities = EnumSet.of(role, roles);
+        this.enabled = enabled;
+        this.roles = roles;
     }
+
+
+
 
     public String getEmail() {
         return email;
@@ -58,10 +68,10 @@ public class User extends NamedEntity {
     }
 
     public void addAuthority(Role authority) {
-        if (authorities == null) {
-            authorities = EnumSet.of(authority);
+        if (roles == null) {
+            roles = EnumSet.of(authority);
         }else {
-            authorities.add(authority);
+            roles.add(authority);
         }
     }
 
@@ -69,10 +79,9 @@ public class User extends NamedEntity {
         return enabled;
     }
 
-    public Collection<Role> getAuthorities() {
-        return authorities;
+    public Set<Role> getRoles() {
+        return roles;
     }
-
     @Override
     public String toString() {
         return "User{" +

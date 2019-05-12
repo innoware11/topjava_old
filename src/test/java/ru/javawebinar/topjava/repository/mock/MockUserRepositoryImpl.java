@@ -6,16 +6,28 @@ import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.repository.UserRepository;
 import ru.javawebinar.topjava.web.UserServlet;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.List;
 
 @Repository
-public class MockUserRepository implements UserRepository {
+public class MockUserRepositoryImpl implements UserRepository {
     private static final LoggerWrapper LOG = LoggerWrapper.get(UserServlet.class);
+
+    @PostConstruct
+    public void postConstruct() {
+        LOG.info("PostConstruct");
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        LOG.info("PreDestroy");
+    }
 
     @Override
     public boolean delete(int id) {
         LOG.info("Delete " + id);
-        return true;
+        return id != 0;
     }
 
     @Override
